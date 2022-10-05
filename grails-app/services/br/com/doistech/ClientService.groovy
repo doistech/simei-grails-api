@@ -101,44 +101,44 @@ class ClientService {
 
     }
 
-    Map upsertCliente(Map map){
+    Map upsertCliente(Cliente _cliente){
         Map resultService = [:]
 
         try {
-            if(map.companyId){
+            if(_cliente.company.id){
                 Cliente cliente
                 Cliente.withTransaction {
-                    cliente = getClienteById(map?.id)
+                    cliente = getClienteById(!_cliente?.id ? 0 : _cliente.id)
                     if(!cliente) cliente = new Cliente()
 
-                    cliente.createdBy = map.username
-                    cliente.updatedBy = map.username
+                    cliente.createdBy = _cliente.createdBy
+                    cliente.updatedBy = _cliente.updatedBy
 
                     cliente.dateCreated = new Date()
                     cliente.dateUpdated = new Date()
 
-                    cliente.name  = map.name
-                    cliente.taxId = map?.taxId
+                    cliente.name  = _cliente.name
+                    cliente.taxId = _cliente?.taxId
 
                     // Contato
-                    cliente.email = map?.email
-                    cliente.phone = map?.phone
-                    cliente.mobilePhone = map?.phone
+                    cliente.email = _cliente?.email
+                    cliente.phone = _cliente?.phone
+                    cliente.mobilePhone = _cliente?.phone
 
                     // endereco
-                    cliente.postalCode = map?.postalCode
-                    cliente.address = map?.address
-                    cliente.addressComplement = map?.addressComplement
-                    cliente.addressReference = map?.addressReference
-                    cliente.addressNumber = map?.addressNumber
+                    cliente.postalCode = _cliente?.postalCode
+                    cliente.address = _cliente?.address
+                    cliente.addressComplement = _cliente?.addressComplement
+                    cliente.addressReference = _cliente?.addressReference
+                    cliente.addressNumber = _cliente?.addressNumber
 
                     // Relação
-                    cliente.company = companyService.getCompanyById(map.companyId)
+                    cliente.company = companyService.getCompanyById(_cliente.company.id)
 
                     cliente.save(flush:true)
 
                     resultService.status = 0
-                    resultService.clienteMap = [id:cliente.id, name: cliente.name]
+                    resultService.clienteMap = [id:cliente.id, name: cliente.name, companyId: cliente.company.id]
                     resultService.message = "Transaction processed successfully"
                     return resultService
                 }

@@ -1,6 +1,6 @@
-#Mon, 03 Oct 2022 19:37:43 -0300
+#Wed, 05 Oct 2022 09:53:07 -0300
 
 info.app.version=0.1
 info.app.name=simei-grails-api
-grails.env=production
+grails.env=development
 info.app.grailsVersion=5.2.4

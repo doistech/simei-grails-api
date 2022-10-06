@@ -1,4 +1,4 @@
-import br.com.doistech.Cliente
+import br.com.doistech.domain.Cliente
 
 model {
     Cliente cliente

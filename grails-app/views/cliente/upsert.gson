@@ -1,4 +1,3 @@
-import br.com.doistech.Cliente
 import grails.plugins.GrailsPlugin
 
 model {

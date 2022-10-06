@@ -57,6 +57,7 @@ dependencies {
     implementation "org.hibernate:hibernate-core:5.6.9.Final"
     implementation "org.grails.plugins:views-json"
     implementation "org.grails.plugins:views-json-templates"
+    implementation "mysql:mysql-connector-java:8.0.21"
     profile "org.grails.profiles:rest-api"
     runtimeOnly "org.glassfish.web:el-impl:2.2.1-b05"
     runtimeOnly "com.h2database:h2"

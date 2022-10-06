@@ -1,4 +1,4 @@
-package simei.grails.api
+package br.com.doistech.controller
 
 import grails.core.GrailsApplication
 import grails.plugins.*

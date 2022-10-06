@@ -1,4 +1,4 @@
-package simei.grails.api
+package br.com.doistech.init
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration

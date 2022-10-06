@@ -97,8 +97,10 @@ environments:
         dataSource:
             dbCreate: update
             url: jdbc:mysql://184.107.94.164:3306/doistech_bigdatadoistech?allowPublicKeyRetrieval=true&zeroDateTimeBehavior=convertToNull&useSSL=false
-            username: doistech_dba
-            password: 37Sele8tBrdoistech
+            username: doistech_brenno
+            password: fygJlGqB0_0X
+#            username: doistech_dba
+#            password: 37Sele8tBrdoistech
     test:
         dataSource:
             dbCreate: update

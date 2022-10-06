@@ -1,0 +1,31 @@
+import br.com.doistech.domain.Cliente
+import br.com.doistech.domain.Company
+import br.com.doistech.domain.RawMaterial
+import grails.plugins.GrailsPlugin
+
+model {
+    Map rawMaterialMap
+}
+
+json {
+
+    status rawMaterialMap.status
+    message rawMaterialMap.message
+
+    rawMaterialList rawMaterialMap.rawMaterialList, { RawMaterial rawMaterial ->
+        createdBy rawMaterial.createdBy
+        updatedBy rawMaterial.updatedBy
+
+        dateCreated rawMaterial.dateCreated
+        dateUpdated rawMaterial.dateUpdated
+
+        name rawMaterial.name
+        unitMeasurement rawMaterial.unitMeasurement
+        quantity rawMaterial.quantity
+        price rawMaterial.price
+
+        materialType rawMaterial.materialType
+
+        companyId rawMaterial.company.id
+    }
+}

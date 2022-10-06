@@ -1,0 +1,36 @@
+import br.com.doistech.domain.Cliente
+
+model {
+    Cliente cliente
+}
+
+json {
+    createdBy cliente.createdBy
+    updatedBy cliente.updatedBy
+
+    dateCreated cliente.dateCreated
+    dateUpdated cliente.dateUpdated
+
+    name cliente.name
+    taxId cliente.taxId
+
+    // Contato
+    email cliente.email
+    phone cliente.phone
+    mobilePhone cliente.mobilePhone
+
+    // endereco
+    postalCode cliente.postalCode
+    address cliente.address
+    addressComplement cliente.addressComplement
+    addressReference cliente.addressReference
+    addressNumber cliente.addressNumber
+
+    // Relação
+    companyId cliente.company.id
+
+    // Exclusão
+    deleteBy cliente.deleteBy
+    deleteDate cliente.deleteDate
+    isDelete cliente.isDelete
+}

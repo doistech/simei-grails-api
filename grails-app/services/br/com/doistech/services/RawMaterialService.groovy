@@ -5,6 +5,8 @@ import org.hibernate.FetchMode
 
 class RawMaterialService {
 
+    CompanyService companyService
+
     List<RawMaterial> getRawMaterialList(Company company){
         List<RawMaterial> rawMaterialList = []
 
@@ -130,5 +132,41 @@ class RawMaterialService {
             }
         }
         return true
+    }
+
+    Map searchRawMaterial(Long companyId, String inputSearch = null){
+        Map resultServiceMap = [:]
+        List<RawMaterial> rawMaterialList = []
+
+        try{
+            if(companyId){
+                Company company = companyService.getCompanyById(companyId)
+
+                RawMaterial.withTransaction {
+                    rawMaterialList = RawMaterial.createCriteria().list {
+                        if(inputSearch) like('name', '%' + inputSearch + '%')
+                        eq('company', company)
+                        order("name", "asc")
+                        fetchMode("company", FetchMode.JOIN)
+                    }
+                }
+
+                resultServiceMap.status = 0
+                resultServiceMap.rawMaterialList = rawMaterialList
+                resultServiceMap.message = "Transaction processed successfully"
+                return resultServiceMap
+            }else{
+                resultServiceMap.status = 1
+                resultServiceMap.rawMaterialList = []
+                resultServiceMap.message = "Company not found"
+                return resultServiceMap
+            }
+        }catch(Exception e){
+            resultServiceMap.status = 2
+            resultServiceMap.rawMaterialList = []
+            resultServiceMap.message = "Error searchRawMaterial - ${e.message}"
+            e.printStackTrace()
+            return resultServiceMap
+        }
     }
 }

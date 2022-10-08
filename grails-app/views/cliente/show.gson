@@ -11,6 +11,8 @@ json {
     message clienteMap.message
 
     clientes clienteMap.clienteMapList, { Cliente cliente ->
+        id cliente.id
+
         createdBy cliente.createdBy
         updatedBy cliente.updatedBy
 

@@ -13,6 +13,8 @@ json {
     message rawMaterialMap.message
 
     rawMaterialList rawMaterialMap.rawMaterialList, { RawMaterial rawMaterial ->
+        id rawMaterial.id
+
         createdBy rawMaterial.createdBy
         updatedBy rawMaterial.updatedBy
 

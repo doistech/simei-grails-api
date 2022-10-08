@@ -1,16 +1,16 @@
 import grails.plugins.GrailsPlugin
 
 model {
-    Map clienteMap
+    Map rawMaterialMap
 }
 
 json {
-    status clienteMap.status
-    message clienteMap.message
+    status rawMaterialMap.status
+    message rawMaterialMap.message
 
-    cliente clienteMap.clienteMap, { Map cliente ->
-        clienteId cliente.id
-        name cliente.name
-        companyId cliente.companyId
+    cliente rawMaterialMap.rawMaterialMap, { Map rawMaterial ->
+        clienteId rawMaterial.id
+        name rawMaterial.name
+        companyId rawMaterial.companyId
     }
 }

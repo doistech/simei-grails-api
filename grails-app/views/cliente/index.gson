@@ -5,6 +5,7 @@ model {
 }
 
 json {
+    id cliente.id
     createdBy cliente.createdBy
     updatedBy cliente.updatedBy
 

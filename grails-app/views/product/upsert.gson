@@ -1,0 +1,16 @@
+import grails.plugins.GrailsPlugin
+
+model {
+    Map resultServiceMap
+}
+
+json {
+    status resultServiceMap.status
+    message resultServiceMap.message
+
+    product resultServiceMap.productMap, { Map produto ->
+        productId produto.id
+        name produto.name
+        companyId produto.companyId
+    }
+}

@@ -98,7 +98,6 @@ class ClientService {
             println "Error SearchCliente - ${e.message}"
             return resultService
         }
-
     }
 
     Map upsertCliente(Cliente _cliente){

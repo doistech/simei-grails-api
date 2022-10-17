@@ -1,0 +1,50 @@
+import br.com.doistech.domain.Product
+
+model {
+    Map resultServiceMap
+}
+
+json {
+
+    status resultServiceMap.status
+    message resultServiceMap.message
+
+    produtos resultServiceMap.productMapList, { Product product ->
+        id product.id
+
+        createdBy product.createdBy
+        updatedBy product.updatedBy
+
+        dateCreated product.dateCreated
+        dateUpdated product.dateUpdated
+
+        name product.name
+        description product.description
+
+        codeEan product.codeEan
+
+        productOrderPrice product.productOrderPrice
+        salesPrice product.salesPrice
+        wholesalePrice product.wholesalePrice
+
+        wholesaleQuantity product.wholesaleQuantity
+
+        profit product.profit
+        profitWholesale product.profitWholesale
+
+        percentageOrderPrice product.percentageOrderPrice
+        percentageWholesalePrice product.percentageWholesalePrice
+
+        companyId product.company.id
+
+        hasPriceMethod = product.hasPriceMethod
+
+        fixedCost product.fixedCost
+        otherCosts product.otherCosts
+        packagingCost product.packagingCost
+
+        deleteBy product.deleteBy
+        dateDelete product.dateDelete
+        isDelete product.isDelete
+    }
+}

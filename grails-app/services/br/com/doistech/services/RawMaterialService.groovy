@@ -169,4 +169,44 @@ class RawMaterialService {
             return resultServiceMap
         }
     }
+
+    Map upsertRawMaterial(RawMaterial _rawMaterial){
+        Map resultServiceMap = [:]
+
+        try {
+            if (_rawMaterial.company.id) {
+                RawMaterial.withTransaction {
+                    if(!_rawMaterial.id){
+                        _rawMaterial.dateCreated = new Date()
+                    }
+                    _rawMaterial.dateUpdated = new Date()
+
+                    try {
+                        _rawMaterial.save(flush: true)
+                        resultServiceMap.status = 0
+                        resultServiceMap.rawMaterialMap = [id: _rawMaterial.id, name: _rawMaterial.name, companyId: _rawMaterial.company.id]
+                        resultServiceMap.message = "Transaction processed successfully"
+                        return resultServiceMap
+                    } catch (Exception e) {
+                        resultServiceMap.status = 0
+                        resultServiceMap.rawMaterialMap = []
+                        resultServiceMap.message = 'Error - ' + e.message
+                        return resultServiceMap
+                        println('Error upsertRawMaterial - ' + e.message)
+                    }
+                }
+            } else {
+                resultServiceMap.status = 1
+                resultServiceMap.rawMaterialMap = [:]
+                resultServiceMap.message = "Company not found"
+                return resultServiceMap
+            }
+        } catch (Exception e) {
+            resultServiceMap.status = 2
+            resultServiceMap.rawMaterialMap = [:]
+            resultServiceMap.message = "Error upsertRawMaterial - ${e.message}"
+            println resultServiceMap.message
+            return resultServiceMap
+        }
+    }
 }
